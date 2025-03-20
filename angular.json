@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/datepicker",
       "sourceRoot": "projects/datepicker/src",
-      "prefix": "lib",
+      "prefix": "dp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

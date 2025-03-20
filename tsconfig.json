@@ -4,7 +4,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "datepicker": ["./dist/datepicker"]
+      "@ngverse/datepicker": ["./dist/datepicker"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

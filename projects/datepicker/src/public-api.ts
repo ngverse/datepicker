@@ -1,6 +1,8 @@
 /*
  * Public API Surface of datepicker
  */
+/** Date Adapter */
+export * from './lib/native-date-adapter/native-date-adapter.token';
 
-export * from './lib/datepicker.service';
-export * from './lib/datepicker.component';
+/** Datepicker Adapter */
+export * from './lib/adapter/datepicker.token';

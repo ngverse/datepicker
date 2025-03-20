@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --project=app --no-hmr",
+    "start:exp": "ng serve --project=experimental --no-hmr",
     "build": "ng build",
+    "build:dp:watch": "ng build --watch --project=datepicker",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:app": "node dist/app/server/server.mjs",
