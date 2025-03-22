@@ -1,83 +1,50 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@angular/core';
-import {
-  DpDatepickerAdapter,
-  NgpDateUnits,
-  NgpDuration,
-} from '../adapter/datepicker.adapter';
+import { DpDatepickerAdapter } from '../adapter/datepicker.adapter';
+
+/** Creates an array and fills it with values. */
+function range<T>(length: number, valueFunction: (index: number) => T): T[] {
+  const valuesArray = Array(length);
+  for (let i = 0; i < length; i++) {
+    valuesArray[i] = valueFunction(i);
+  }
+  return valuesArray;
+}
 
 @Injectable({ providedIn: 'root' })
-export class NativeDateAdapter implements DpDatepickerAdapter<Date> {
-  create(values: NgpDateUnits): Date {
-    throw new Error('Method not implemented.');
+export class NativeDateAdapter implements DpDatepickerAdapter {
+  locale = 'en-US';
+
+  getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[] {
+    const dtf = new Intl.DateTimeFormat(this.locale, {
+      weekday: style,
+      timeZone: 'utc',
+    });
+    return range(7, (i) => this._format(dtf, new Date(2017, 0, i + 1)));
   }
-  now(): Date {
-    return new Date();
-  }
-  set(date: Date, values: NgpDateUnits): Date {
-    throw new Error('Method not implemented.');
-  }
-  add(date: Date, duration: NgpDuration): Date {
-    throw new Error('Method not implemented.');
-  }
-  subtract(date: Date, duration: NgpDuration): Date {
-    throw new Error('Method not implemented.');
-  }
-  compare(a: Date, b: Date): number {
-    throw new Error('Method not implemented.');
-  }
-  isEqual(a: Date, b: Date): boolean {
-    throw new Error('Method not implemented.');
-  }
-  isBefore(a: Date, b: Date): boolean {
-    throw new Error('Method not implemented.');
-  }
-  isAfter(a: Date, b: Date): boolean {
-    throw new Error('Method not implemented.');
-  }
-  isSameDay(a: Date, b: Date): boolean {
-    throw new Error('Method not implemented.');
-  }
-  isSameMonth(a: Date, b: Date): boolean {
-    throw new Error('Method not implemented.');
-  }
-  isSameYear(a: Date, b: Date): boolean {
-    throw new Error('Method not implemented.');
-  }
-  getYear(date: Date): number {
-    throw new Error('Method not implemented.');
-  }
-  getMonth(date: Date): number {
-    throw new Error('Method not implemented.');
-  }
-  getDate(date: Date): number {
-    throw new Error('Method not implemented.');
-  }
-  getDay(date: Date): number {
-    throw new Error('Method not implemented.');
-  }
-  getHours(date: Date): number {
-    throw new Error('Method not implemented.');
-  }
-  getMinutes(date: Date): number {
-    throw new Error('Method not implemented.');
-  }
-  getSeconds(date: Date): number {
-    throw new Error('Method not implemented.');
-  }
-  getMilliseconds(date: Date): number {
-    throw new Error('Method not implemented.');
-  }
-  startOfMonth(date: Date): Date {
-    throw new Error('Method not implemented.');
-  }
-  endOfMonth(date: Date): Date {
-    throw new Error('Method not implemented.');
-  }
-  startOfDay(date: Date): Date {
-    throw new Error('Method not implemented.');
-  }
-  endOfDay(date: Date): Date {
-    throw new Error('Method not implemented.');
+
+  /**
+   * When converting Date object to string, javascript built-in functions may return wrong
+   * results because it applies its internal DST rules. The DST rules around the world change
+   * very frequently, and the current valid rule is not always valid in previous years though.
+   * We work around this problem building a new Date object which has its internal UTC
+   * representation with the local date and time.
+   * @param dtf Intl.DateTimeFormat object, containing the desired string format. It must have
+   *    timeZone set to 'utc' to work fine.
+   * @param date Date from which we want to get the string representation according to dtf
+   * @returns A Date object with its UTC representation based on the passed in date info
+   */
+  private _format(dtf: Intl.DateTimeFormat, date: Date) {
+    // Passing the year to the constructor causes year numbers <100 to be converted to 19xx.
+    // To work around this we use `setUTCFullYear` and `setUTCHours` instead.
+    const d = new Date();
+    d.setUTCFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+    d.setUTCHours(
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds(),
+      date.getMilliseconds()
+    );
+    return dtf.format(d);
   }
 }
