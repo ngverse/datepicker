@@ -5,10 +5,8 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import {
-  provideDpDatepickerAdapter,
-  withDpNativeDateAdapter,
-} from '@ngverse/datepicker';
+import { provideDpDatepickerAdapter } from '@ngverse/datepicker';
+import { withDpDayjsDateAdapter } from '@ngverse/dayjs-date-adapter';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -16,6 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideDpDatepickerAdapter(withDpNativeDateAdapter()),
+    provideDpDatepickerAdapter(withDpDayjsDateAdapter()),
   ],
 };
