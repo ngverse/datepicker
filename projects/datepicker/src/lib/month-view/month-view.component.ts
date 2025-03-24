@@ -1,5 +1,5 @@
 import { Component, computed } from '@angular/core';
-import { injectDpDatepickerAdapter } from '../adapter/datepicker.token';
+import { injectDpDateAdapter } from '../adapter/date.token';
 import { DayCell } from '../core/day-cell';
 
 @Component({
@@ -9,7 +9,7 @@ import { DayCell } from '../core/day-cell';
   styleUrl: './month-view.component.css',
 })
 export class MonthViewComponent {
-  private _dateAdapter = injectDpDatepickerAdapter();
+  private _dateAdapter = injectDpDateAdapter();
 
   weeks = this._dateAdapter.getDayOfWeekNames('narrow');
 
