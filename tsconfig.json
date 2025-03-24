@@ -4,7 +4,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "datepicker": ["./dist/datepicker"]
+      "@ngverse/datepicker": ["./dist/datepicker"],
+      "@ngverse/dayjs-date-adapter": ["./dist/dayjs-date-adapter"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

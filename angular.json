@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/datepicker",
       "sourceRoot": "projects/datepicker/src",
-      "prefix": "lib",
+      "prefix": "dp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -229,6 +229,36 @@
               "projects/experimental/**/*.html"
             ],
             "eslintConfig": "projects/experimental/eslint.config.js"
+          }
+        }
+      }
+    },
+    "dayjs-date-adapter": {
+      "projectType": "library",
+      "root": "projects/dayjs-date-adapter",
+      "sourceRoot": "projects/dayjs-date-adapter/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/dayjs-date-adapter/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/dayjs-date-adapter/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/dayjs-date-adapter/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/dayjs-date-adapter/tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }

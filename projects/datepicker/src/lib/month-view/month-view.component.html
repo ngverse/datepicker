@@ -1,0 +1,18 @@
+<table role="grid">
+  <thead>
+    <tr>
+      @for (day of weeks; track $index) {
+        <th scope="col">{{ day }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (weekDay of weekDays(); track $index) {
+      <tr>
+        @for (day of weekDay; track $index) {
+          <td [class.prev]="!day.isInMonth">{{ day.display }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

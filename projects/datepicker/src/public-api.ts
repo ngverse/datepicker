@@ -1,6 +1,9 @@
 /*
  * Public API Surface of datepicker
  */
+/** Datepicker Adapter */
+export * from './lib/adapter/datepicker.adapter';
+export * from './lib/adapter/datepicker.token';
 
-export * from './lib/datepicker.service';
-export * from './lib/datepicker.component';
+/** Mont View */
+export * from './lib/month-view/month-view.component';
