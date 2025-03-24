@@ -1,4 +1,4 @@
-export interface DpDatepickerAdapter<T> {
+export interface DpDateAdapter<T> {
   getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[];
 
   daysInMonth(date: T): number;
