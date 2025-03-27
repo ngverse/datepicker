@@ -1,9 +1,9 @@
-import { DpDatepickerAdapter } from '@ngverse/datepicker';
+import { DpDateAdapter } from '@ngverse/datepicker';
 import dayjs, { Dayjs } from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
 dayjs.extend(localeData);
 
-export class DpDayjsDateAdapter implements DpDatepickerAdapter<Dayjs> {
+export class DpDayjsDateAdapter implements DpDateAdapter<Dayjs> {
   isSame(date1: dayjs.Dayjs, date2: dayjs.Dayjs): boolean {
     return date1.isSame(date2);
   }

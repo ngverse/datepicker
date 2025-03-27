@@ -1,0 +1,24 @@
+<div>
+  @switch (viewType()) {
+    @case ('day') {
+      <dp-day-view
+        [day]="day()"
+        (daySelected)="daySelected($event)"
+        (changeView)="changeViewType($event)"
+      ></dp-day-view>
+    }
+    @case ('month') {
+      <dp-month-view
+        [month]="month()"
+        (monthSelected)="monthSelected($event)"
+        (changeView)="changeViewType($event)"
+      ></dp-month-view>
+    }
+    @case ('year') {
+      <dp-year-view
+        [year]="year()"
+        (yearSelected)="yearSelected($event)"
+      ></dp-year-view>
+    }
+  }
+</div>

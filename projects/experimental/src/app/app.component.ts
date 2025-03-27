@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { MonthViewComponent } from '@ngverse/datepicker';
+import { DatepickerComponent } from '@ngverse/datepicker';
 
 @Component({
   selector: 'app-root',
-  imports: [MonthViewComponent],
+  imports: [DatepickerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
